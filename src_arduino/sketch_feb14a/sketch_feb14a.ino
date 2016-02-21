@@ -1,6 +1,13 @@
+#include <Pushetta.h>
+
 #define RELAY_ON 0
 #define RELAY_OFF 1
 #define RELAY_1  2
+#include <Bridge.h>
+#include <Pushetta.h>
+
+//Initialize pushetta manager with API Key
+Pushetta pushetta("21a6e54e956aa7526f638e6d0274c09307326434");
 
 void setup() {
   // initialize digital pin 13 as an output.
@@ -20,10 +27,12 @@ void loop() {
   int sensorValue2 = analogRead(A1);
   float voltage2 = sensorValue2 * (5.0 / 1023.0);
   float diff = abs(voltage2 - voltage1);
-  if (diff < 1.5){
-  digitalWrite(RELAY_1, RELAY_ON);
-  delay(100);
-  digitalWrite(RELAY_1, RELAY_OFF);}
+  if (diff > 1.5) {
+    digitalWrite(RELAY_1, RELAY_ON);
+    delay(100);
+    digitalWrite(RELAY_1, RELAY_OFF);
+    pushetta.pushMessage("Arduino_safety","Lichtschranke wurde unterbrochen!");
+  }
   Serial.println(diff);
   //delay(1000);
 }
