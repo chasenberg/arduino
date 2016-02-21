@@ -7,7 +7,7 @@
 #include <Pushetta.h>
 
 //Initialize pushetta manager with API Key
-Pushetta pushetta("21a6e54e956aa7526f638e6d0274c09307326434");
+Pushetta p = Pushetta("21a6e54e956aa7526f638e6d0274c09307326434");
 
 void setup() {
   // initialize digital pin 13 as an output.
@@ -31,7 +31,7 @@ void loop() {
     digitalWrite(RELAY_1, RELAY_ON);
     delay(100);
     digitalWrite(RELAY_1, RELAY_OFF);
-    pushetta.pushMessage("Arduino_safety","Lichtschranke wurde unterbrochen!");
+    p.pushMessage("Arduino_safety","Lichtschranke wurde unterbrochen!");
   }
   Serial.println(diff);
   //delay(1000);
