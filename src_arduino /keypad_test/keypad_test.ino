@@ -20,7 +20,10 @@ void setup()
  
 void loop()
 {
-  char key = keypad.getKey(); 
-  if (key != NO_KEY)
-    Serial.println(key);
+  char first = keypad.getKey();
+  char second = keypad.getKey(); 
+  char third = keypad.getKey(); 
+  char fourth = keypad.getKey(); 
+  if (first != NO_KEY)
+    Serial.println(first);
 }
