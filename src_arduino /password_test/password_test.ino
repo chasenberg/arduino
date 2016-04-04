@@ -1,15 +1,16 @@
 #include "Keypad.h"
+
 const byte ROWS = 4;
 const byte COLS = 3;
 char keys[ROWS][COLS] =
- {{'1','2','3'},
-  {'4','5','6'},
-  {'7','8','9'},
-  {'*','0','#'}};
+ {{'5','4','6'},
+{'2','1','3'},
+{'8','7','9'},
+{'#','0','*'}};
 // set display to four rows
 // set display to three columns
-   byte rowPins[ROWS] = {5, 4, 3, 2};
-   byte colPins[COLS] = {8, 7, 6};
+   byte rowPins[ROWS] = {8, 7, 6, 5}; 
+   byte colPins[COLS] = {4, 3, 2};  
    Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
    // End of necessary code
 char PIN[6]={'1','2','3','4','5','6'}; // our secret number char attempt[6]={0,0,0,0,0,0};
@@ -21,11 +22,11 @@ int z=0;
    }
    void correctPIN()  // do this if the correct PIN is entered
    {
-     Serial.println("Correct PIN entered...");
+     Serial.println("Korrekte PIN!");
    }
    void incorrectPIN() // do this if an incorrect PIN is entered
    {
-     Serial.println("Incorrect PIN entered!");
+     Serial.println("Inkorrekte PIN!");
    }
 void checkPIN()
    {
@@ -50,12 +51,14 @@ void checkPIN()
        attempt[zz]=0;
      }
 }
-   void readKeypad()
+
+void readKeypad()
    {
      char key = keypad.getKey();
      if (key != NO_KEY)
      {
- switch(key) {
+    switch(key) 
+    {
        case '*':
          z=0;
          break;

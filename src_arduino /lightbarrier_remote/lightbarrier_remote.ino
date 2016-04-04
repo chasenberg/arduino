@@ -20,6 +20,7 @@ EthernetClient client;
 void setup() {
   // initialize digital pin 13 as an output.
   pinMode(RELAY_1, OUTPUT);
+  
   digitalWrite(RELAY_1, RELAY_OFF);
   Serial.begin(9600);
   if (Ethernet.begin(mac) == 0) 
@@ -44,6 +45,9 @@ void loop() {
     delay(2000);
   }
   Serial.println(diff);
+  /*int  test = analogRead(A4);
+  float test1 = test*(5.0 / 1023);
+  Serial.println(test1);*/
   //delay(1000);
 }
 

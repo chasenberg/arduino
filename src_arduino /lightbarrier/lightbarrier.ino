@@ -2,7 +2,7 @@
 
 #define RELAY_ON 0
 #define RELAY_OFF 1
-#define RELAY_1  2
+#define RELAY_1  16
 #include <Bridge.h>
 #include <Pushetta.h>
 
