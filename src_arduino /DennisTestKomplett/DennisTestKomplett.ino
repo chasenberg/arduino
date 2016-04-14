@@ -39,14 +39,22 @@ void setup() {
   // start the Ethernet connection and the server:
   Ethernet.begin(mac, ip);
   server.begin();
-  Serial.print("server is at ");
-  Serial.println(Ethernet.localIP());
-  Serial.print(LDRValue);
+  //Serial.print("server is at ");
+  //Serial.println(Ethernet.localIP());
 }
 
 
 void loop() {
   // listen for incoming clients
+  LDRValue = analogRead(LDR);
+  if(LDRValue < light_sensitivity)
+    {
+      lcd.backlight();
+    }
+  else
+    {
+      lcd.noBacklight();
+    }
   EthernetClient client = server.available();
   float h = dht.readHumidity();
   float t = dht.readTemperature();
@@ -124,23 +132,14 @@ void loop() {
         }
       }
     }
-    // give the web browser time to receive the data
-    delay(20);
-    // close the connection:
-    client.stop();
-    Serial.println("client disconnected");
-    Ethernet.maintain();
-    LDRValue = analogRead(LDR);
-    Serial.println(light_sensitivity);
-  if(LDRValue < light_sensitivity)
-    {
-      lcd.backlight();
-    }
-  else
-    {
-      lcd.noBacklight();
-    }
-
+// give the web browser time to receive the data
+delay(20);
+// close the connection:
+client.stop();
+Serial.println("client disconnected");
+Ethernet.maintain();
+LDRValue = analogRead(LDR);
+Serial.println(LDRValue);
   }
   delay(2000);
 }
